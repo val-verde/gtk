@@ -30,6 +30,7 @@
 #include <jpeglib.h>
 #include <jerror.h>
 #include <setjmp.h>
+#include <stdlib.h>
 
 /* {{{ Error handling */
 
