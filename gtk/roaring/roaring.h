@@ -62,6 +62,9 @@ enum {
 #include <malloc.h>  // this should never be needed but there are some reports that it is needed.
 #endif
 
+#if defined(__i386__)
+#include <immintrin.h>
+#endif
 
 #if defined(_MSC_VER) && !defined(__clang__) && !defined(_WIN64) && !defined(ROARING_ACK_32BIT)
 #pragma message( \
