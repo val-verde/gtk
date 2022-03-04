@@ -259,7 +259,7 @@ static inline void roaring_bitmap_aligned_free(void *memblock) {
 #define IS_BIG_ENDIAN (*(uint16_t *)"\0\xff" < 0x100)
 
 static inline int hamming(uint64_t x) {
-#ifdef USESSE4
+#if defined(USESSE4) && defined(__LP64__)
     return (int) _mm_popcnt_u64(x);
 #else
     // won't work under visual studio, but hopeful we have _mm_popcnt_u64 in
