@@ -946,7 +946,6 @@ if not meson.is_cross_build() and build_machine.cpu_family() != 'arm' and build_
     input : gtk_resources_binary,
     output : 'gtkresources_blob2.o',
     command : [objcopy,
-                 '--strip-all',
                  '--rename-section', '.data=.gresource.gtk',
                  '--add-symbol','_gtk_resource_data=.gresource.gtk:0',
                  '@INPUT@',
