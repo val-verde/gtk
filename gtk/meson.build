@@ -875,7 +875,7 @@ if objcopy.found()
   objcopy_supports_add_symbol = run_command(objcopy, '--help').stdout().contains('--add-symbol')
 endif
 
-ld = find_program('ld', required : false)
+ld = find_program('cc', required : false)
 
 if not meson.is_cross_build() and build_machine.cpu_family() != 'arm' and build_machine.system() == 'linux' and objcopy.found() and objcopy_supports_add_symbol and ld.found()
   glib_compile_resources = find_program('glib-compile-resources')
@@ -935,9 +935,9 @@ if not meson.is_cross_build() and build_machine.cpu_family() != 'arm' and build_
       input : gtk_gresource,
       output : 'gtkresources_blob.o',
       command : [ld,
-                 '-z', 'noexecstack',
+                 '-Wl,-z,noexecstack',
                  '-r',
-                 '-b','binary',
+                 '-Wl,-b,binary',
                  '@INPUT@',
                  '-o','@OUTPUT@'])
 
